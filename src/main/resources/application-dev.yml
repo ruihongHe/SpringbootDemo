@@ -2,7 +2,7 @@ spring:
 #mysql数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.137.240:3306/family?characterEncoding=utf-8
+    url: jdbc:mysql://192.168.137.240:3306/family
     username: grdb
     password: 123456
 #redis配置
