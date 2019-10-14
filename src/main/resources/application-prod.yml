@@ -14,9 +14,9 @@ spring:
   #mysql数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/family?characterEncoding=utf-8
+    url: jdbc:mysql://mysql:3306/family?characterEncoding=utf-8
     username: root
-    password: 123456
+    password: root
     type: com.zaxxer.hikari.HikariDataSource
     # HikariCP连接池配置
     hikari:
