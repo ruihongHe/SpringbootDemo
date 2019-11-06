@@ -1,0 +1,40 @@
+version: '2'
+services:
+  mysql:
+    image: red.sunny.cn/mysql/mysql-server:0.0.1-SNAPSHOT
+    container_name: mysql
+    restart: always
+    networks:
+      - test-network
+    dns_search: .
+    ports:
+      - 3306:3306
+  springboot:
+    image: red.sunny.cn/demo/demo-spring:0.0.1-SNAPSHOT
+    container_name: springboot
+    restart: always
+    volumes:
+      -  /etc/localtime:/etc/localtime
+    networks:
+      - test-network
+    dns_search: .
+    ports:
+      - 8180:8180
+    depends_on:
+      - mysql
+  nginx:
+    image: red.sunny.cn/nginx/nginx:0.0.1-SNAPSHOT
+    container_name: nginx
+    restart: always
+    networks:
+      - test-network
+    dns_search: .
+    ports:
+      - 80:80
+      - 443:443
+      - 4443:4443
+    depends_on:
+      - springboot
+networks:
+  test-network:
+    external: false
