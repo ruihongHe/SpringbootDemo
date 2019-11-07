@@ -11,6 +11,7 @@ spring:
   jpa:
     show-sql: true
     database: mysql
+    #自动创建和更新数据库表
     hibernate:
       ddl-auto: update
   #mysql数据库配置

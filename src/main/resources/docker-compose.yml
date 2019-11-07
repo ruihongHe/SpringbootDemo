@@ -1,7 +1,7 @@
 version: '2'
 services:
   mysql:
-    image: red.sunny.cn/mysql/mysql-server:0.0.1-SNAPSHOT
+    image: ruihonghe/mysql:0.0.1-SNAPSHOT
     container_name: mysql
     restart: always
     networks:
@@ -10,7 +10,7 @@ services:
     ports:
       - 3306:3306
   springboot:
-    image: red.sunny.cn/demo/demo-spring:0.0.1-SNAPSHOT
+    image: ruihonghe/springboot:0.0.1-SNAPSHOT
     container_name: springboot
     restart: always
     volumes:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - mysql
   nginx:
-    image: red.sunny.cn/nginx/nginx:0.0.1-SNAPSHOT
+    image: ruihonghe/nginx:0.0.1-SNAPSHOT
     container_name: nginx
     restart: always
     networks:
