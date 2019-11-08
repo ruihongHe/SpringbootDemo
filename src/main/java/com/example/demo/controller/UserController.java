@@ -47,4 +47,22 @@ public class UserController {
     }
 
 
+
+    @ApiOperation(value="添加临时用户", notes="创建临时用户")
+    @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
+    @RequestMapping(value = "/addUserByRedis",method=RequestMethod.POST)
+    public void  addUserByRedis(@RequestBody User user){
+        log.info("请求参数：{}",user.toString());
+        userService.addUserByRedis(user);
+
+    }
+
+    @ApiOperation(value="查询临时用户", notes="查询临时用户")
+    @ApiImplicitParam(name = "account", value = "账号", required = true, dataType = "String")
+    @RequestMapping(value = "/getUserByRedis",method=RequestMethod.POST)
+    public Object  getUserByRedis(@RequestBody String account){
+        log.info("请求参数：{}",account.toString());
+        User user=userService.getUserByRedis(account);
+        return user;
+    }
 }

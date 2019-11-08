@@ -11,4 +11,8 @@ public interface UserService {
     List<User> findAll();
 
     void addUser(User user);
+
+    void addUserByRedis(User user);
+
+    User getUserByRedis(String account);
 }
