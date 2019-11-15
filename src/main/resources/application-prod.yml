@@ -20,8 +20,8 @@ spring:
     url: jdbc:mysql://mysql:3306/family?characterEncoding=utf-8
     username: root
     password: root
-    type: com.zaxxer.hikari.HikariDataSource
     # HikariCP连接池配置
+    type: com.zaxxer.hikari.HikariDataSource
     hikari:
       auto-commit: true
       minimum-idle: 3

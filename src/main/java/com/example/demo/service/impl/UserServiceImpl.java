@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addUserByRedis(User user) {
         Gson gson= new Gson();
-        redisTemplate.opsForValue().set(user.getAccount(),gson.toJson(user),30, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set(user.getAccount(),gson.toJson(user),30, TimeUnit.SECONDS);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         String   result =redisTemplate.opsForValue().get(account);
         if(!StringUtils.isEmpty(result))
            {
-
+            user=gson.fromJson(result,User.class);
            }
         return user;
     }
