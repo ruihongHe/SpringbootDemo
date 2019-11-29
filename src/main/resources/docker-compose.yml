@@ -53,16 +53,16 @@ services:
     dns_search: .
     ports:
       - 27017:27017
-  neo4j:
-    image: ruihonghe/neo4j:0.0.1-SNAPSHOT
-    container_name: neo4j
-    restart: always
-    networks:
-      - test-network
-    dns_search: .
-    ports:
-      - 7474:7474
-      - 7687:7687
+#  neo4j:
+#    image: ruihonghe/neo4j:0.0.1-SNAPSHOT
+#    container_name: neo4j
+#    restart: always
+#    networks:
+#      - test-network
+#    dns_search: .
+#    ports:
+#      - 7474:7474
+#      - 7687:7687
 networks:
   test-network:
     external: false
