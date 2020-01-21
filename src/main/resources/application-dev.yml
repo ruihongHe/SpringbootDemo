@@ -12,10 +12,13 @@ spring:
   jpa:
     show-sql: true
     database: mysql
+    #自动创建和更新数据库表
+    hibernate:
+      ddl-auto: update
   #mysql数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.36.129:3306/family?characterEncoding=utf-8
+    url: jdbc:mysql://192.168.36.130:3306/family?characterEncoding=utf-8
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource
@@ -29,5 +32,17 @@ spring:
       connection-timeout: 30000
 #redis配置
   redis:
-    host: 192.168.137.240
+    host: 192.168.36.130
     port: 6379
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1
+  data:
+    mongodb:
+      host: 192.168.36.130
+      port: 27017
+      username: admin
+      password: 123456

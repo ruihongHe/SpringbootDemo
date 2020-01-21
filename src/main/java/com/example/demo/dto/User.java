@@ -2,11 +2,11 @@ package com.example.demo.dto;
 
 
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-
 @Entity
 @Table(name="user")
 public class User {

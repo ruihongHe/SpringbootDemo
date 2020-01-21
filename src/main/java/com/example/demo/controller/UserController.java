@@ -6,8 +6,7 @@ import com.example.demo.service.UserService;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+@Log4j2
 @RestController
 @RequestMapping("/User")
 public class UserController {
 
-    private static final Logger log= LoggerFactory.getLogger(UserController.class);
+    //private static final Logger log= LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
@@ -31,7 +30,7 @@ public class UserController {
     @RequestMapping(value = "/findAll", method= RequestMethod.POST)
     public Object findAll(){
         log.info("查询所有用户");
-      List<User> result=userService.findAll();
+        List<User> result=userService.findAll();
         log.info("返回结果：{}",result);
     return result;
     }
