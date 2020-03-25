@@ -3,6 +3,9 @@ package com.example.springboot.controller;
 
 import com.example.springboot.dto.User;
 import com.example.springboot.service.UserService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+@Api(tags = "用户控制类")
 @Log4j2
 @RestController
 @RequestMapping("/User")
@@ -28,9 +32,9 @@ public class UserController {
     @ApiOperation(value="获取用户列表", notes="查询所有用户")
     @RequestMapping(value = "/findAll", method= RequestMethod.POST)
     public Object findAll(){
-        log.info("查询所有用户");
+        log.info("select all user");
         List<User> result=userService.findAll();
-        log.info("返回结果：{}",result);
+        log.info("result：{}", new Gson().toJson(result));
     return result;
     }
 
@@ -39,7 +43,7 @@ public class UserController {
     @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
     @RequestMapping(value = "/addUser",method=RequestMethod.POST)
     public void  addUser(@RequestBody User user){
-        log.info("请求参数：{}",user.toString());
+        log.info("Request parameter：{}",new Gson().toJson(user));
          userService.addUser(user);
 
     }
@@ -50,7 +54,7 @@ public class UserController {
     @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
     @RequestMapping(value = "/addUserByRedis",method=RequestMethod.POST)
     public void  addUserByRedis(@RequestBody User user){
-        log.info("请求参数：{}",user.toString());
+        log.info("Request parameter：{}", new Gson().toJson(user));
         userService.addUserByRedis(user);
 
     }
@@ -59,7 +63,7 @@ public class UserController {
     @ApiImplicitParam(name = "account", value = "账号", required = true, dataType = "String")
     @RequestMapping(value = "/getUserByRedis",method=RequestMethod.POST)
     public Object  getUserByRedis(@RequestBody String account){
-        log.info("请求参数：{}",account.toString());
+        log.info("Request parameter：{}",account.toString());
         User user=userService.getUserByRedis(account);
         return user;
     }
