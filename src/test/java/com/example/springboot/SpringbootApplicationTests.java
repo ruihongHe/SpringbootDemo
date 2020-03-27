@@ -36,8 +36,6 @@ public class SpringbootApplicationTests {
 		String str=new String("1233");
 		Class<?> klass = str.getClass();
 
-
-
 	}
 
 

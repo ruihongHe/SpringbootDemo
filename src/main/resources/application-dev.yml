@@ -58,3 +58,5 @@ spring:
       username: admin
       password: 123456
 
+redisson:
+  address: redis://192.168.36.130:6379

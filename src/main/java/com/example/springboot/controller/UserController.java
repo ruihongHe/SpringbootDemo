@@ -1,6 +1,7 @@
 package com.example.springboot.controller;
 
 
+import com.example.springboot.annotation.NoRepeatSubmit;
 import com.example.springboot.dto.User;
 import com.example.springboot.service.UserService;
 import com.google.gson.Gson;
@@ -31,6 +32,7 @@ public class UserController {
 
     @ApiOperation(value="获取用户列表", notes="查询所有用户")
     @RequestMapping(value = "/findAll", method= RequestMethod.POST)
+    @NoRepeatSubmit(time = 3)
     public Object findAll(){
         log.info("select all user");
         List<User> result=userService.findAll();
