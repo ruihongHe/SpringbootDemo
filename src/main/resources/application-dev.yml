@@ -6,15 +6,17 @@ server:
   # 下面是配置undertow作为服务器的参数
   undertow:
       # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+      # 不要设置过大，如果过大，启动项目会报错：打开文件数过多
       io-threads: 4
-      # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+      # 阻塞任务线程池, 当执行类似servlet请求阻塞IO操作, undertow会从这个线程池中取得线程
+      # 它的值设置取决于系统线程执行任务的阻塞系数，默认值是IO线程数*8
       worker-threads: 20
       # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
       # 每块buffer的空间大小,越小的空间被利用越充分
       buffer-size: 1024
-      # 是否分配的直接内存
+      # 是否分配的直接内存(NIO直接分配的堆外内存)
       direct-buffers: true
-  connection-timeout: 5000
+  #connection-timeout: 5000
 
 
 
@@ -29,9 +31,12 @@ spring:
   #mysql数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.36.130:3306/family?characterEncoding=utf-8
-    username: root
-    password: root
+    #url: jdbc:mysql://rm-bp1vcral95z159uz8125010.mysql.rds.aliyuncs.com:3306/renren_fast?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    #username: ktcyy
+    #password: ktcyy319414
+    #url: jdbc:mysql://192.168.36.130:3306/family?characterEncoding=utf-8
+    #username: root
+    #password: root
     type: com.zaxxer.hikari.HikariDataSource
     # HikariCP连接池配置
     hikari:
@@ -51,12 +56,9 @@ spring:
         min-idle: 0
         max-active: 8
         max-wait: -1
-  data:
-    mongodb:
-      host: 192.168.36.130
-      port: 27017
-      username: admin
-      password: 123456
-
-redisson:
-  address: redis://192.168.36.130:6379
+#  data:
+#    mongodb:
+#       host: 192.168.36.130
+#       port: 27017
+#       username: admin
+#       password: 123456
