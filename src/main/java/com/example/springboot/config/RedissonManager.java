@@ -1,20 +1,21 @@
 package com.example.springboot.config;
 
+
+import com.sun.org.apache.bcel.internal.generic.SWITCH;
+import io.micrometer.core.instrument.util.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.data.mongodb.core.aggregation.ConditionalOperators;
 
 @Configuration
 public class RedissonManager {
 
-    @Value("${spring.redis.host}")
-    private String host;
-    @Value("${spring.redis.port}")
-    private String port;
+    @Value("${redisson.address}")
+    private String addressUrl;
 
     /*单机模式自动装配*/
     @Bean
@@ -22,11 +23,12 @@ public class RedissonManager {
         RedissonClient redisson = null;
         Config config = new Config();
         config.useSingleServer()
-                .setAddress("redis://"+host+":"+port);
+                .setAddress(addressUrl);
         redisson = Redisson.create(config);
-        System.out.println(redisson.getConfig().toString());
+        System.out.println(redisson.getConfig().toJSON().toString());
         return redisson;
     }
+
     /**
      * 哨兵模式自动装配
      * @return

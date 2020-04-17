@@ -1,4 +1,3 @@
-/*
 package com.example.springboot.controller;
 
 import com.example.springboot.service.impl.ScoketClient;
@@ -24,4 +23,3 @@ public class IndexController {
     }
 
 }
-*/
