@@ -1,4 +1,4 @@
-package com.example.springboot.util;
+package com.example.springboot.util.redis;
 
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
