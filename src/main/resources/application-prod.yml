@@ -7,28 +7,13 @@ server:
 
 
 spring:
-#jpa配置
-  jpa:
-    show-sql: true
-    database: mysql
-    #自动创建和更新数据库表
-    hibernate:
-      ddl-auto: update
   #mysql数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.36.130:3306/family?characterEncoding=utf-8
     username: root
     password: root
-    # HikariCP连接池配置
-    type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      auto-commit: true
-      minimum-idle: 3
-      maximum-pool-size: 10
-      idle-timeout: 60000
-      max-lifetime: 1800000
-      connection-timeout: 30000
+
   #redis配置
   redis:
       host: 192.168.36.130
