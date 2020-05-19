@@ -20,27 +20,66 @@ server:
 spring:
   #mysql数据库配置
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.36.130:3306/family?characterEncoding=utf-8
-    username: root
-    password: root
+#    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.36.130:3306/family?characterEncoding=utf-8
+      username: root
+      password: root
+      type: com.alibaba.druid.pool.DruidDataSource
+#      initial-size: 10
+#      max-active: 100
+#      min-idle: 10
+#      max-wait: 60000
+#      pool-prepared-statements: true
+#      max-pool-prepared-statement-per-connection-size: 20
+#      time-between-eviction-runs-millis: 60000
+#      min-evictable-idle-time-millis: 300000
+      #Oracle需要打开注释
+      #validation-query: SELECT 1 FROM DUAL
+#      test-while-idle: true
+#      test-on-borrow: false
+#      test-on-return: false
+#      stat-view-servlet:
+#        enabled: true
+#        url-pattern: /druid/*
+          #login-username: admin
+          #login-password: admin
+#      filter:
+#        stat:
+#          log-slow-sql: true
+#          slow-sql-millis: 1000
+#          merge-sql: false
+#        wall:
+#          config:
+#          multi-statement-allow: true
+
 
 #redis配置
   redis:
     host: 192.168.36.130
     port: 6379
+    timeout: 6000
     jedis:
       pool:
         max-idle: 8
         min-idle: 0
         max-active: 8
         max-wait: -1
+mybatis-plus:
+  # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath:mapper/*.xml
 #  data:
 #    mongodb:
 #      host: 192.168.36.130
 #      port: 27017
 #      username: admin
 #      password: 123456
+
+demo:
+  cluster: false  #集群配置  true集群环境   false单机环境，还需打开pom.xml里的spring-session-data-redis注释
+  globalSessionTimeout: 3600   #单机环境，session过期时间为60分钟
+  redis:
+    open: false  #是否开启redis缓存  true开启   false关闭
 
 redisson:
    address: redis://192.168.36.130:6379

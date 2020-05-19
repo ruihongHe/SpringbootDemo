@@ -1,3 +1,3 @@
-# Springboot_V2.1.6
-springboot+websocket+spring_Data_jpa+spring_scurity
+# Springboot_V2.2.5
+构建springboot+ webscoket +mybatis+ shrio的后台权限系统
 

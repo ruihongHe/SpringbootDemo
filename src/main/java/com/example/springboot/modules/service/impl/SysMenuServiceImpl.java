@@ -1,79 +1,28 @@
 package com.example.springboot.modules.service.impl;
 
-import com.example.springboot.modules.entity.SysMenu;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.springboot.modules.dao.SysMenuDao;
+import com.example.springboot.modules.entity.SysMenu;
+import com.example.springboot.modules.entity.SysUser;
 import com.example.springboot.modules.service.SysMenuService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 菜单权限表(SysMenu)表服务实现类
+ * 权限表(SysMenu)表服务实现类
  *
  * @author hrh
- * @since 2020-05-14 15:51:03
+ * @since 2020-05-15 14:44:21
  */
 @Service("sysMenuService")
-public class SysMenuServiceImpl implements SysMenuService {
-    @Resource
-    private SysMenuDao sysMenuDao;
+public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> implements SysMenuService {
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param menuId 主键
-     * @return 实例对象
-     */
     @Override
-    public SysMenu queryById(Long menuId) {
-        return this.sysMenuDao.queryById(menuId);
-    }
-
-    /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
-    @Override
-    public List<SysMenu> queryAllByLimit(int offset, int limit) {
-        return this.sysMenuDao.queryAllByLimit(offset, limit);
-    }
-
-    /**
-     * 新增数据
-     *
-     * @param sysMenu 实例对象
-     * @return 实例对象
-     */
-    @Override
-    public SysMenu insert(SysMenu sysMenu) {
-        this.sysMenuDao.insert(sysMenu);
-        return sysMenu;
-    }
-
-    /**
-     * 修改数据
-     *
-     * @param sysMenu 实例对象
-     * @return 实例对象
-     */
-    @Override
-    public SysMenu update(SysMenu sysMenu) {
-        this.sysMenuDao.update(sysMenu);
-        return this.queryById(sysMenu.getMenuId());
-    }
-
-    /**
-     * 通过主键删除数据
-     *
-     * @param menuId 主键
-     * @return 是否成功
-     */
-    @Override
-    public boolean deleteById(Long menuId) {
-        return this.sysMenuDao.deleteById(menuId) > 0;
+    public List<SysMenu> selectList(Object o) {
+        QueryWrapper<SysMenu> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(SysMenu::selectAll,o);
+        return this.baseMapper.selectList(queryWrapper);
     }
 }
