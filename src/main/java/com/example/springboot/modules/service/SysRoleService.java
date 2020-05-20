@@ -11,4 +11,5 @@ import com.example.springboot.modules.entity.SysRole;
  */
 public interface SysRoleService extends IService<SysRole> {
 
+    void saveRole(SysRole sysRole);
 }

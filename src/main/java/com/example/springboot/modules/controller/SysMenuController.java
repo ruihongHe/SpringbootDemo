@@ -6,8 +6,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.springboot.common.validator.ValidatorUtils;
+import com.example.springboot.common.validator.group.AddGroup;
+import com.example.springboot.common.validator.group.UpdateGroup;
 import com.example.springboot.modules.entity.SysMenu;
 import com.example.springboot.modules.service.SysMenuService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -37,6 +41,7 @@ public class SysMenuController extends ApiController {
      * @return 所有数据
      */
     @GetMapping
+    @RequiresPermissions("sys:menu:list")
     public R selectAll(Page<SysMenu> page, SysMenu sysMenu) {
         return success(this.sysMenuService.page(page, new QueryWrapper<>(sysMenu)));
     }
@@ -48,6 +53,7 @@ public class SysMenuController extends ApiController {
      * @return 单条数据
      */
     @GetMapping("{id}")
+    @RequiresPermissions("sys:menu:info")
     public R selectOne(@PathVariable Serializable id) {
         return success(this.sysMenuService.getById(id));
     }
@@ -59,7 +65,9 @@ public class SysMenuController extends ApiController {
      * @return 新增结果
      */
     @PostMapping
+    @RequiresPermissions("sys:menu:save")
     public R insert(@RequestBody SysMenu sysMenu) {
+        ValidatorUtils.validateEntity(sysMenu, AddGroup.class);
         return success(this.sysMenuService.save(sysMenu));
     }
 
@@ -70,7 +78,9 @@ public class SysMenuController extends ApiController {
      * @return 修改结果
      */
     @PutMapping
+    @RequiresPermissions("sys:menu:update")
     public R update(@RequestBody SysMenu sysMenu) {
+        ValidatorUtils.validateEntity(sysMenu, UpdateGroup.class);
         return success(this.sysMenuService.updateById(sysMenu));
     }
 
@@ -81,6 +91,7 @@ public class SysMenuController extends ApiController {
      * @return 删除结果
      */
     @DeleteMapping
+    @RequiresPermissions("sys:menu:delete")
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.sysMenuService.removeByIds(idList));
     }

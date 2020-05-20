@@ -10,4 +10,8 @@
         <result property="roleId" column="role_id"/>
     </resultMap>
 
+    <select id="queryRoleIdList" resultType="java.lang.Long">
+        select role_id from sys_user_role where user_id = #{value}
+    </select>
+
 </mapper>

@@ -8,8 +8,8 @@ import java.io.Serializable;
  * @Author heruihong
  * @Date 2020/5/5 22:16
  * @Version 1.0
+ * 项目返回统一结果
  */
-/*项目返回统一结果*/
 @Data
 public class Response implements Serializable {
     private Integer code;

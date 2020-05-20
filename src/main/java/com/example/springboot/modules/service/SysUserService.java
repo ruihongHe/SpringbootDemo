@@ -16,4 +16,10 @@ public interface SysUserService extends IService<SysUser> {
     SysUser selectUserByName(String username);
 
     List<String> queryAllPerms(Long userId);
+
+    void saveUser(SysUser sysUser);
+
+    void updateUser(SysUser sysUser);
+
+    boolean updatePassword(Long userId, String password, String newPassword);
 }

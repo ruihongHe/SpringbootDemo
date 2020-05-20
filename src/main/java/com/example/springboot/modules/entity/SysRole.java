@@ -1,9 +1,16 @@
 package com.example.springboot.modules.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.example.springboot.common.validator.group.AddGroup;
+import com.example.springboot.common.validator.group.UpdateGroup;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 角色表(SysRole)表实体类
@@ -14,10 +21,30 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 @Data
 public class SysRole extends Model<SysRole> {
-    //角色ID
+    /**
+     * 角色ID
+     */
     private Long roleId;
-    //角色名称
+    /**
+     * 角色名称
+     */
+    @NotBlank(message="角色名不能为空", groups = {AddGroup.class, UpdateGroup.class})
     private String roleName;
+    /**
+     *创建时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createTime;
+    /**
+     * 更新时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date updateTime;
+    /**
+     * 菜单ID列表
+     */
+    @TableField(exist=false)
+    private List<Long> menuIdList;
 
 
     /**

@@ -7,6 +7,8 @@ import com.example.springboot.modules.shiro.ShiroUtils;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.annotation.RequiresGuest;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author hrh
@@ -24,7 +28,7 @@ import java.io.IOException;
  * @Version 1.0
  */
 @Controller
-public class SysLoginController {
+public class SysLoginController  {
 
 
     @Autowired
@@ -53,7 +57,9 @@ public class SysLoginController {
      */
     @ResponseBody
     @PostMapping("/sys/login")
+    @RequiresGuest
     public Response login(String username, String password, String captcha) throws Exception {
+        Map<String,Object> map = new HashMap<>();
         String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
         if(!captcha.equalsIgnoreCase(kaptcha)){
             return Response.setResult(500,"验证码不正确");
@@ -71,14 +77,15 @@ public class SysLoginController {
         }catch (AuthenticationException e) {
             return Response.setResult(500,"账户验证失败");
         }
-
-        return Response.setResult(ResultCodeEnum.SUCCESS);
+        map.put("token",ShiroUtils.getSession().getId().toString());
+        return Response.setResult(ResultCodeEnum.SUCCESS,map);
     }
 
     /**
      * 退出
      */
     @GetMapping("logout")
+    @RequiresUser
     public void logout() {
         ShiroUtils.logout();
     }
