@@ -11,14 +11,17 @@ import java.io.Serializable;
 
 /**
  * @Description 自定义获取Token
- * @Author Sans
- * @CreateTime 2019/6/13 8:34
  */
 public class ShiroSessionManager extends DefaultWebSessionManager {
-    //定义常量
+    /**
+     * 定义常量
+     */
     private static final String AUTHORIZATION = "Authorization";
+
     private static final String REFERENCED_SESSION_ID_SOURCE = "Stateless request";
-    //重写构造器
+    /**
+     * 重写构造器
+     */
     public ShiroSessionManager() {
         super();
         this.setDeleteInvalidSessions(true);
@@ -39,9 +42,8 @@ public class ShiroSessionManager extends DefaultWebSessionManager {
             request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_IS_VALID, Boolean.TRUE);
             return token;
         } else {
-            // 这里禁用掉Cookie获取方式
-            // 按默认规则从Cookie取Token
-            // return super.getSessionId(request, response);
+            //禁用cookie
+
             return null;
         }
     }

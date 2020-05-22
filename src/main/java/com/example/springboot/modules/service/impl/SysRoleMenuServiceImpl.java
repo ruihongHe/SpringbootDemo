@@ -27,14 +27,42 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuDao, SysRoleM
         if(menuIdList == null || menuIdList.size() == 0){
             return ;
         }
-
         //保存用户与角色关系
-        for(Long menuId : menuIdList){
+        menuIdList.forEach(menuId->{
             SysRoleMenu sysRoleMenu=new SysRoleMenu();
             sysRoleMenu.setRoleId(roleId);
             sysRoleMenu.setMenuId(menuId);
             this.save(sysRoleMenu);
+        });
+    }
+
+    @Override
+    public void removeByroleId(List<Long> idList) {
+        if(idList == null || idList.size() == 0){
+            return ;
         }
+
+        idList.forEach(roleId->{
+            this.remove(new QueryWrapper<SysRoleMenu>().eq("role_id", roleId));
+        });
+
+    }
+
+    @Override
+    public void removeByMenuId(List<Long> idList) {
+        if(idList == null || idList.size() == 0){
+            return ;
+        }
+
+        idList.forEach(menuId->{
+            this.remove(new QueryWrapper<SysRoleMenu>().eq("menu_id", menuId));
+        });
+    }
+
+    @Override
+    public List<Long> querymenuIdList(Long roleId) {
+
+        return baseMapper.querymenuIdList(roleId);
     }
 
 }

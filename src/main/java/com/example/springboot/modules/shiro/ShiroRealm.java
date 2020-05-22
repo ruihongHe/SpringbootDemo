@@ -13,7 +13,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -23,7 +22,6 @@ import java.util.*;
  * @Date 2020/5/15 14:31
  * @Version 1.0
  */
-@Component
 public class ShiroRealm extends AuthorizingRealm {
 
     @Resource
@@ -41,7 +39,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
         //系统管理员，拥有最高权限
         if(userId == 1){
-            List<SysMenu> menuList = sysMenuService.selectList(null);
+            List<SysMenu> menuList = sysMenuService.selectList();
             permsList = new ArrayList<>(menuList.size());
             for(SysMenu menu : menuList){
                 permsList.add(menu.getPerms());

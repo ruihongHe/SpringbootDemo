@@ -19,8 +19,6 @@ import com.example.springboot.modules.service.SysUserService;
 import com.example.springboot.modules.shiro.ShiroUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -53,8 +51,9 @@ public class SysUserController extends ApiController {
      * @param sysUser 查询实体
      * @return 所有数据
      */
-    @GetMapping
-    @RequiresRoles("ADMIN")
+    @SysLog("用户列表")
+    @PostMapping("/list")
+    @RequiresPermissions("sys:user:list")
     public R selectAll(Page<SysUser> page, SysUser sysUser) {
         return success(this.sysUserService.page(page, new QueryWrapper<>(sysUser)));
     }
@@ -62,7 +61,7 @@ public class SysUserController extends ApiController {
     /**
      * 获取登录的用户信息
      */
-    @RequestMapping("/info")
+    @GetMapping("/info")
     public Response info(){
         Map<String,Object> data=new HashMap<>();
         data.put("user",ShiroUtils.getUserEntity());
@@ -72,7 +71,7 @@ public class SysUserController extends ApiController {
      * 修改登录用户密码
      */
     @SysLog("修改密码")
-    @RequestMapping("/password")
+    @PostMapping("/password")
     public Response password(String password, String newPassword){
         Assert.isBlank(newPassword, "新密码不为能空");
         SysUser user=ShiroUtils.getUserEntity();
@@ -94,18 +93,17 @@ public class SysUserController extends ApiController {
     /**
      * 通过主键查询单条数据
      *
-     * @param id 主键
+     * @param userId 主键
      * @return 单条数据
      */
-    @GetMapping("{id}")
+    @SysLog("查询用户详情")
+    @PostMapping("/info")
     @RequiresPermissions("sys:user:info")
-    public R selectOne(@PathVariable("userId") Long userId) {
+    public R selectOne(@RequestParam Long userId) {
         SysUser user=sysUserService.getById(userId);
-
         //获取用户所属的角色列表
         List<Long> roleIdList = sysUserRoleService.queryRoleIdList(userId);
         user.setRoleIdList(roleIdList);
-
         return success(user);
     }
 
@@ -116,7 +114,7 @@ public class SysUserController extends ApiController {
      * @return 新增结果
      */
     @SysLog("添加用户")
-    @PostMapping
+    @PostMapping("/add")
     @RequiresPermissions("sys:user:save")
     public Response insert(@RequestBody SysUser sysUser) {
         ValidatorUtils.validateEntity(sysUser, AddGroup.class);
@@ -131,7 +129,7 @@ public class SysUserController extends ApiController {
      * @return 修改结果
      */
     @SysLog("更新用户")
-    @PutMapping
+    @PostMapping("/update")
     @RequiresPermissions("sys:user:update")
     public Response update(@RequestBody SysUser sysUser) {
         ValidatorUtils.validateEntity(sysUser, UpdateGroup.class);
@@ -146,7 +144,7 @@ public class SysUserController extends ApiController {
      * @return 删除结果
      */
     @SysLog("删除用户")
-    @DeleteMapping
+    @PostMapping("/delete")
     @RequiresPermissions("sys:user:delete")
     public Response delete(@RequestBody Long[] idList) {
         if(ArrayUtils.contains(idList, 1L)){
@@ -156,7 +154,7 @@ public class SysUserController extends ApiController {
         if(ArrayUtils.contains(idList, ShiroUtils.getUserId())){
             return  Response.setResult(401,"当前用户不能删除");
         }
-        sysUserService.removeByIds(Arrays.asList(idList));
+        sysUserService.removeByUserIds(Arrays.asList(idList));
 
         return Response.setResult(ResultCodeEnum.SUCCESS);
     }

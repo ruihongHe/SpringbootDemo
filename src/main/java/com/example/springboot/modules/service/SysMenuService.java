@@ -13,5 +13,7 @@ import java.util.List;
  */
 public interface SysMenuService extends IService<SysMenu> {
 
-    List<SysMenu> selectList(Object o);
+    List<SysMenu> selectList();
+
+    Object removeByMenuIds(List<Long> idList);
 }

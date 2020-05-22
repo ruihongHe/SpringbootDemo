@@ -1,5 +1,7 @@
 package com.example.springboot.modules.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
@@ -11,10 +13,10 @@ import java.io.Serializable;
  * @author hrh
  * @since 2020-05-15 14:44:22
  */
-@SuppressWarnings("serial")
 @Data
 public class SysRoleMenu extends Model<SysRoleMenu> {
     //ID
+    @TableId(type = IdType.AUTO)
     private Long id;
     //角色ID
     private Long roleId;

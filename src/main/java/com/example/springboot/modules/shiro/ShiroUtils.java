@@ -1,10 +1,13 @@
 package com.example.springboot.modules.shiro;
 
+import com.example.springboot.common.exception.CmsException;
+import com.example.springboot.common.util.ResultCodeEnum;
 import com.example.springboot.modules.entity.SysUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.crazycake.shiro.RedisSessionDAO;
 
 /**
  * Shiro工具类
@@ -20,6 +23,7 @@ public class ShiroUtils {
 	public static String sha256(String password, String salt) {
 		return new SimpleHash(hashAlgorithmName, password, salt, hashIterations).toString();
 	}
+
 
 	public static Session getSession() {
 		return SecurityUtils.getSubject().getSession();
@@ -56,7 +60,7 @@ public class ShiroUtils {
 	public static String getKaptcha(String key) throws Exception {
 		Object kaptcha = getSessionAttribute(key);
 		if(kaptcha == null){
-			throw new Exception("验证码已失效");
+			throw new CmsException(ResultCodeEnum.KAPTCHA_ERROR);
 		}
 		getSession().removeAttribute(key);
 		return kaptcha.toString();

@@ -31,7 +31,9 @@ public class ShiroConfig {
     private final String CACHE_KEY = "shiro:cache:";
     private final String SESSION_KEY = "shiro:session:";
 
-    //Redis配置
+    /**
+    *   Redis配置
+    */
     @Value("${spring.redis.host}")
     private String host;
     @Value("${spring.redis.port}")
@@ -42,31 +44,31 @@ public class ShiroConfig {
     private String password;*/
 
 
+
+
     /**
-     * 单机环境，session交给shiro管理
+     * 安全管理器
+     */
 
     @Bean
-    @ConditionalOnProperty(prefix = "demo", name = "cluster", havingValue = "false")
-    public DefaultWebSessionManager sessionManager(@Value("${demo.globalSessionTimeout:3600}") long globalSessionTimeout){
-        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        sessionManager.setSessionValidationSchedulerEnabled(true);
-        sessionManager.setSessionIdUrlRewritingEnabled(false);
-        sessionManager.setSessionValidationInterval(globalSessionTimeout * 1000);
-        sessionManager.setGlobalSessionTimeout(globalSessionTimeout * 1000);
-
-        return sessionManager;
-    }
-     */
-    @Bean("securityManager")
-    public SecurityManager securityManager(ShiroRealm shiroRealm, SessionManager sessionManager) {
+    public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(shiroRealm);
-        // 自定义Ssession管理
+        securityManager.setRealm(shiroRealm());
         securityManager.setSessionManager(sessionManager());
-        // 自定义Cache实现
         securityManager.setCacheManager(cacheManager());
         securityManager.setRememberMeManager(null);
         return securityManager;
+    }
+
+    /**
+     * 身份验证器
+     * @Author Sans
+     * @CreateTime 2019/6/12 10:37
+     */
+    @Bean
+    public ShiroRealm shiroRealm() {
+
+        return  new ShiroRealm();
     }
     /**
      * 配置Cache管理器
@@ -135,6 +137,9 @@ public class ShiroConfig {
     public ShiroSessionIdGenerator sessionIdGenerator(){
         return new ShiroSessionIdGenerator();
     }
+    /**
+     * Shiro基础配置
+     */
     @Bean("shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
@@ -154,6 +159,7 @@ public class ShiroConfig {
         filterMap.put("/sys/login", "anon");
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/captcha.jpg", "anon");
+        filterMap.put("/sysUser/add", "anon");
         filterMap.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
@@ -161,7 +167,7 @@ public class ShiroConfig {
     }
 
     @Bean("lifecycleBeanPostProcessor")
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+    public static  LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
 

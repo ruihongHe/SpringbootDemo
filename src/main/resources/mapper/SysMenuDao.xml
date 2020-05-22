@@ -16,6 +16,9 @@
       LEFT JOIN sys_role_menu se ON sm.menu_id = se.menu_id
       WHERE se.role_id = #{roleId}
     </select>
+    <select id="selectALL" resultType="com.example.springboot.modules.entity.SysMenu">
+     SELECT sm.* FROM sys_menu sm
+    </select>
 
 
 </mapper>

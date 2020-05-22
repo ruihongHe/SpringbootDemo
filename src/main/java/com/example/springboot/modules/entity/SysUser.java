@@ -1,6 +1,8 @@
 package com.example.springboot.modules.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.example.springboot.common.validator.group.AddGroup;
 import com.example.springboot.common.validator.group.UpdateGroup;
@@ -27,6 +29,7 @@ public class SysUser extends Model<SysUser> {
      *用户ID
      */
     @NotBlank(message="用户id不能为空", groups = {UpdateGroup.class})
+    @TableId(type = IdType.AUTO)
     private Long userId;
     /**
      *用户名

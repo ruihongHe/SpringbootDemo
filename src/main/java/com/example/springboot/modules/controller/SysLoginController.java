@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
@@ -36,7 +38,7 @@ public class SysLoginController  {
 
     //生成验证码图片
     @GetMapping("captcha.jpg")
-    public void captcha(HttpServletResponse response)throws IOException {
+    public void captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Cache-Control", "no-store, no-cache");
         response.setContentType("image/jpeg");
 
@@ -45,8 +47,11 @@ public class SysLoginController  {
         //生成图片验证码
         BufferedImage image = producer.createImage(text);
         //保存到shiro session
+        HttpSession session = request.getSession();
+        // 将生成好的图片放入会话中
+       // session.setAttribute(Constants.KAPTCHA_SESSION_KEY, text);
         ShiroUtils.setSessionAttribute(Constants.KAPTCHA_SESSION_KEY, text);
-
+        response.addHeader("token",ShiroUtils.getSession().getId().toString());
         ServletOutputStream out = response.getOutputStream();
         ImageIO.write(image, "jpg", out);
     }
@@ -57,13 +62,12 @@ public class SysLoginController  {
      */
     @ResponseBody
     @PostMapping("/sys/login")
-    @RequiresGuest
-    public Response login(String username, String password, String captcha) throws Exception {
+    public Response login(String username, String password/*, String captcha*/) throws Exception {
         Map<String,Object> map = new HashMap<>();
-        String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
+       /* String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
         if(!captcha.equalsIgnoreCase(kaptcha)){
             return Response.setResult(500,"验证码不正确");
-        }
+        }*/
         try{
             Subject subject = ShiroUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -84,8 +88,7 @@ public class SysLoginController  {
     /**
      * 退出
      */
-    @GetMapping("logout")
-    @RequiresUser
+    @GetMapping("/sys/logout")
     public void logout() {
         ShiroUtils.logout();
     }

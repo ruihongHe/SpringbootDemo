@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -30,16 +31,39 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleDao, SysUserR
             return ;
         }
         //保存用户与角色关系
-        for(Long roleId : roleIdList){
+        roleIdList.forEach(roleId ->{
             SysUserRole sysUserRole = new SysUserRole();
             sysUserRole.setUserId(userId);
             sysUserRole.setRoleId(roleId);
             this.save(sysUserRole);
-        }
+        });
     }
 
     @Override
     public List<Long> queryRoleIdList(Long userId) {
         return baseMapper.queryRoleIdList(userId);
+    }
+
+    @Override
+    public void removeByUserIds(List<Long> asList) {
+        if(asList == null || asList.size() == 0){
+            return ;
+        }
+        //删除用户与角色关系
+        asList.forEach( userId -> {
+            this.remove(new QueryWrapper<SysUserRole>().eq("user_id", userId));
+        });
+
+    }
+
+    @Override
+    public void removeByroleId(List<Long> idList) {
+        if(idList == null || idList.size() == 0){
+            return ;
+        }
+        //删除用户与角色关系
+        idList.forEach( roleId -> {
+            this.remove(new QueryWrapper<SysUserRole>().eq("role_id", roleId));
+        });
     }
 }

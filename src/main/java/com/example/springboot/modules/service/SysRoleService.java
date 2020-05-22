@@ -3,6 +3,8 @@ package com.example.springboot.modules.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.springboot.modules.entity.SysRole;
 
+import java.util.List;
+
 /**
  * 角色表(SysRole)表服务接口
  *
@@ -12,4 +14,8 @@ import com.example.springboot.modules.entity.SysRole;
 public interface SysRoleService extends IService<SysRole> {
 
     void saveRole(SysRole sysRole);
+
+    boolean updateByRoleId(SysRole sysRole);
+
+    Object removeByRoleIds(List<Long> idList);
 }

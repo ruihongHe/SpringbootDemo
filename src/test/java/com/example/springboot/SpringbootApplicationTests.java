@@ -1,5 +1,7 @@
 package com.example.springboot;
 
+import com.example.springboot.modules.shiro.ShiroUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,8 +25,6 @@ public class SpringbootApplicationTests {
 	}
 	@Test
 	public void test() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-
-
 		//获取String所对应的Class对象
 		Class<?> c = String.class;
 		//获取String类带一个String参数的构造器

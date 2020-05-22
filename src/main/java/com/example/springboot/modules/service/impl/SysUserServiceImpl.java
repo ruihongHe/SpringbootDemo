@@ -2,6 +2,7 @@ package com.example.springboot.modules.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 import com.example.springboot.modules.dao.SysUserDao;
 import com.example.springboot.modules.entity.SysUser;
 import com.example.springboot.modules.service.SysUserRoleService;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -79,4 +82,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
                 new QueryWrapper<SysUser>().eq("user_id", userId).eq("password", password));
     }
 
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void removeByUserIds(List<Long> asList) {
+
+        this.removeByIds(asList);
+        //删除用户与角色关系
+        sysUserRoleService.removeByUserIds(asList);
+    }
 }

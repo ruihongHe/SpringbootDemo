@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.springboot.modules.entity.SysMenu;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 权限表(SysMenu)表数据库访问层
  *
@@ -13,4 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SysMenuDao extends BaseMapper<SysMenu> {
 
+    List<SysMenu> selectALL();
 }

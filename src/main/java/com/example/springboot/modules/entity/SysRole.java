@@ -1,6 +1,8 @@
 package com.example.springboot.modules.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.example.springboot.common.validator.group.AddGroup;
 import com.example.springboot.common.validator.group.UpdateGroup;
@@ -24,6 +26,7 @@ public class SysRole extends Model<SysRole> {
     /**
      * 角色ID
      */
+    @TableId(type = IdType.AUTO)
     private Long roleId;
     /**
      * 角色名称

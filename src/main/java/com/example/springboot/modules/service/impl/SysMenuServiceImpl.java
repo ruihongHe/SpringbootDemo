@@ -6,8 +6,11 @@ import com.example.springboot.modules.dao.SysMenuDao;
 import com.example.springboot.modules.entity.SysMenu;
 import com.example.springboot.modules.entity.SysUser;
 import com.example.springboot.modules.service.SysMenuService;
+import com.example.springboot.modules.service.SysRoleMenuService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,11 +21,21 @@ import java.util.List;
  */
 @Service("sysMenuService")
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> implements SysMenuService {
+    @Resource
+    private SysMenuDao sysMenuDao;
+    @Resource
+    private SysRoleMenuService sysRoleMenuService;
 
     @Override
-    public List<SysMenu> selectList(Object o) {
-        QueryWrapper<SysMenu> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(SysMenu::selectAll,o);
-        return this.baseMapper.selectList(queryWrapper);
+    public List<SysMenu> selectList() {
+        return sysMenuDao.selectALL();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Object removeByMenuIds(List<Long> idList) {
+        //删除角色与菜单的关系
+        sysRoleMenuService.removeByMenuId(idList);
+        return this.removeByIds(idList);
     }
 }

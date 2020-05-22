@@ -6,11 +6,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.springboot.common.annotation.SysLog;
 import com.example.springboot.common.util.Response;
 import com.example.springboot.common.util.ResultCodeEnum;
 import com.example.springboot.common.validator.ValidatorUtils;
 import com.example.springboot.common.validator.group.AddGroup;
 import com.example.springboot.modules.entity.SysRole;
+import com.example.springboot.modules.service.SysRoleMenuService;
 import com.example.springboot.modules.service.SysRoleService;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -35,6 +37,8 @@ public class SysRoleController extends ApiController {
      */
     @Resource
     private SysRoleService sysRoleService;
+    @Resource
+    private SysRoleMenuService sysRoleMenuService;
 
     /**
      * 分页查询所有数据
@@ -43,7 +47,8 @@ public class SysRoleController extends ApiController {
      * @param sysRole 查询实体
      * @return 所有数据
      */
-    @GetMapping
+    @SysLog("角色列表")
+    @PostMapping("/list")
     @RequiresPermissions("sys:role:list")
     public R selectAll(Page<SysRole> page, SysRole sysRole) {
         return success(this.sysRoleService.page(page, new QueryWrapper<>(sysRole)));
@@ -52,13 +57,18 @@ public class SysRoleController extends ApiController {
     /**
      * 通过主键查询单条数据
      *
-     * @param id 主键
+     * @param roleId 主键
      * @return 单条数据
      */
-    @GetMapping("{id}")
+    @SysLog("角色详情")
+    @PostMapping("/info")
     @RequiresPermissions("sys:role:info")
-    public R selectOne(@PathVariable Serializable id) {
-        return success(this.sysRoleService.getById(id));
+    public R selectOne(@RequestParam Long roleId) {
+        SysRole sysRole=sysRoleService.getById(roleId);
+        //查询关联的菜单id
+        List<Long> menuIdList=sysRoleMenuService.querymenuIdList(roleId);
+        sysRole.setMenuIdList(menuIdList);
+        return success(sysRole);
     }
 
     /**
@@ -67,7 +77,8 @@ public class SysRoleController extends ApiController {
      * @param sysRole 实体对象
      * @return 新增结果
      */
-    @PostMapping
+    @SysLog("新增角色")
+    @PostMapping("/add")
     @RequiresPermissions("sys:role:save")
     public Response insert(@RequestBody SysRole sysRole) {
         ValidatorUtils.validateEntity(sysRole, AddGroup.class);
@@ -81,10 +92,11 @@ public class SysRoleController extends ApiController {
      * @param sysRole 实体对象
      * @return 修改结果
      */
-    @PutMapping
+    @SysLog("更新角色")
+    @PostMapping("/update")
     @RequiresPermissions("sys:role:update")
     public R update(@RequestBody SysRole sysRole) {
-        return success(this.sysRoleService.updateById(sysRole));
+        return success(this.sysRoleService.updateByRoleId(sysRole));
     }
 
     /**
@@ -93,9 +105,10 @@ public class SysRoleController extends ApiController {
      * @param idList 主键结合
      * @return 删除结果
      */
-    @DeleteMapping
+    @SysLog("删除角色")
+    @PostMapping("/delete")
     @RequiresPermissions("sys:role:delete")
     public R delete(@RequestParam("idList") List<Long> idList) {
-        return success(this.sysRoleService.removeByIds(idList));
+        return success(this.sysRoleService.removeByRoleIds(idList));
     }
 }

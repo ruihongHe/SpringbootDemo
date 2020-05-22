@@ -15,4 +15,10 @@ public interface SysRoleMenuService extends IService<SysRoleMenu> {
 
 
     void saveOrUpdate(Long roleId, List<Long> menuIdList);
+
+    void removeByroleId(List<Long> idList);
+
+    void removeByMenuId(List<Long> idList);
+
+    List<Long> querymenuIdList(Long roleId);
 }

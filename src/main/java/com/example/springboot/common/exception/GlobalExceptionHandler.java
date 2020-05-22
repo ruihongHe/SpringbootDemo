@@ -4,6 +4,7 @@ import com.example.springboot.common.util.ExceptionUtil;
 import com.example.springboot.common.util.Response;
 import com.example.springboot.common.util.ResultCodeEnum;
 import lombok.extern.log4j.Log4j2;
+import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +40,13 @@ public class GlobalExceptionHandler {
     public Response error(IndexOutOfBoundsException e) {
         log.error(ExceptionUtil.getMessage(e));
         return Response.setResult(ResultCodeEnum.HTTP_CLIENT_ERROR);
+    }
+
+    @ExceptionHandler(AuthorizationException.class)
+    @ResponseBody
+    public Response handleAuthorizationException(AuthorizationException e){
+        log.error(e.getMessage(), e);
+        return Response.setResult(ResultCodeEnum.AUTHORIZATION_ERROR);
     }
 
     /**-------- 自定义定异常处理方法 --------**/

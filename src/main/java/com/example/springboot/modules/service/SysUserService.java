@@ -22,4 +22,6 @@ public interface SysUserService extends IService<SysUser> {
     void updateUser(SysUser sysUser);
 
     boolean updatePassword(Long userId, String password, String newPassword);
+
+    void removeByUserIds(List<Long> asList);
 }

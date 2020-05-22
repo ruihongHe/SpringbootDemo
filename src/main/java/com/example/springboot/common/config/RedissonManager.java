@@ -2,6 +2,7 @@ package com.example.springboot.common.config;
 
 
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.log4j.Log4j2;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 /*import org.springframework.data.mongodb.core.aggregation.ConditionalOperators;*/
 
 @Configuration
+@Log4j2
 public class RedissonManager {
 
     @Value("${redisson.address}")
@@ -24,7 +26,7 @@ public class RedissonManager {
         config.useSingleServer()
                 .setAddress(addressUrl);
         redisson = Redisson.create(config);
-        System.out.println(JSONObject.toJSONString(redisson.getConfig()));
+       log.info(JSONObject.toJSONString(redisson.getConfig()));
         return redisson;
     }
 

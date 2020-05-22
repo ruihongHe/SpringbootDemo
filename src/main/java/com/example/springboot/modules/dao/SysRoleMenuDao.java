@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.springboot.modules.entity.SysRoleMenu;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 角色与权限关系表(SysRoleMenu)表数据库访问层
  *
@@ -13,4 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SysRoleMenuDao extends BaseMapper<SysRoleMenu> {
 
+    List<Long> querymenuIdList(Long roleId);
 }
