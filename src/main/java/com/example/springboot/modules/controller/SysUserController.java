@@ -7,6 +7,9 @@ import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springboot.common.annotation.SysLog;
+import com.example.springboot.common.constant.JwtConstant;
+import com.example.springboot.common.exception.CmsException;
+import com.example.springboot.common.util.JedisUtil;
 import com.example.springboot.common.util.Response;
 import com.example.springboot.common.util.ResultCodeEnum;
 import com.example.springboot.common.validator.Assert;
@@ -44,6 +47,7 @@ public class SysUserController extends ApiController {
     @Resource
     private SysUserRoleService sysUserRoleService;
 
+
     /**
      * 分页查询所有数据
      *
@@ -64,7 +68,7 @@ public class SysUserController extends ApiController {
     @GetMapping("/info")
     public Response info(){
         Map<String,Object> data=new HashMap<>();
-        data.put("user",ShiroUtils.getUserEntity());
+        data.put("user",new ShiroUtils(sysUserService).getUserEntity());
         return Response.setResult(ResultCodeEnum.SUCCESS,data);
     }
     /**
@@ -74,7 +78,7 @@ public class SysUserController extends ApiController {
     @PostMapping("/password")
     public Response password(String password, String newPassword){
         Assert.isBlank(newPassword, "新密码不为能空");
-        SysUser user=ShiroUtils.getUserEntity();
+        SysUser user= new ShiroUtils(sysUserService).getUserEntity();
         //原密码
         password = ShiroUtils.sha256(password, user.getSalt());
         //新密码
@@ -151,11 +155,28 @@ public class SysUserController extends ApiController {
             return Response.setResult(401,"系统管理员不能删除");
         }
 
-        if(ArrayUtils.contains(idList, ShiroUtils.getUserId())){
+        if(ArrayUtils.contains(idList, new ShiroUtils(sysUserService).getUserId())){
             return  Response.setResult(401,"当前用户不能删除");
         }
         sysUserService.removeByUserIds(Arrays.asList(idList));
 
+        return Response.setResult(ResultCodeEnum.SUCCESS);
+    }
+
+
+    /**
+     * 退出
+     */
+    @GetMapping("/logout")
+    public Response logout() {
+        try{
+            if(JedisUtil.exists(JwtConstant.PREFIX_SHIRO_REFRESH_TOKEN+ ShiroUtils.getUsername())){
+                if(JedisUtil.delKey(JwtConstant.PREFIX_SHIRO_REFRESH_TOKEN+ ShiroUtils.getUsername())>0){
+                    ShiroUtils.logout();
+                }
+            }}catch (Exception e){
+            throw new CmsException(500,"剔除失败，username不存在(Deletion Failed. Account does not exist.)");
+        }
         return Response.setResult(ResultCodeEnum.SUCCESS);
     }
 }

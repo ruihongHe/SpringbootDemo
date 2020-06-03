@@ -26,4 +26,8 @@ public interface RedisConstant {
      * 暂无过期时间
      */
     Integer REDIS_EXPIRE_NULL = -1;
+    /**
+     * redis-OK
+     */
+    String OK = "OK";
 }

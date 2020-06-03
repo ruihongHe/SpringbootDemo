@@ -65,6 +65,7 @@ spring:
         min-idle: 0
         max-active: 8
         max-wait: -1
+
 mybatis-plus:
   # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
   mapper-locations: classpath:mapper/*.xml
@@ -75,11 +76,16 @@ mybatis-plus:
 #      username: admin
 #      password: 123456
 
-demo:
-  cluster: false  #集群配置  true集群环境   false单机环境，还需打开pom.xml里的spring-session-data-redis注释
-  globalSessionTimeout: 3600   #单机环境，session过期时间为60分钟
-  redis:
-    open: false  #是否开启redis缓存  true开启   false关闭
 
 redisson:
    address: redis://192.168.36.130:6379
+
+
+# AES密码加密私钥(Base64加密)
+encryptAESKey: V2FuZzkyNjQ1NGRTQkFQSUpXVA==
+# JWT认证加密私钥(Base64加密)
+encryptJWTKey: U0JBUElKV1RkV2FuZzkyNjQ1NA==
+# AccessToken过期时间-5分钟-5*60(秒为单位)
+accessTokenExpireTime: 300
+# RefreshToken过期时间-30分钟-30*60(秒为单位)
+refreshTokenExpireTime: 1800

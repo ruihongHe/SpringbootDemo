@@ -1,18 +1,20 @@
 package com.example.springboot.modules.shiro;
 
+import com.example.springboot.common.constant.JwtConstant;
+import com.example.springboot.common.jwt.JwtToken;
+import com.example.springboot.common.util.JwtUtil;
 import com.example.springboot.modules.entity.SysMenu;
 import com.example.springboot.modules.entity.SysUser;
 import com.example.springboot.modules.service.SysMenuService;
 import com.example.springboot.modules.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.authc.credential.CredentialsMatcher;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -29,23 +31,30 @@ public class ShiroRealm extends AuthorizingRealm {
     @Resource
     private SysMenuService sysMenuService;
 
+
+    /**
+     * 大坑，必须重写此方法，不然Shiro会报错
+     */
+    @Override
+    public boolean supports(AuthenticationToken authenticationToken) {
+        return authenticationToken instanceof JwtToken;
+    }
+
     //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        SysUser user = (SysUser)principalCollection.getPrimaryPrincipal();
-        Long userId = user.getUserId();
-
+        String username = JwtUtil.getClaim(principalCollection.toString(), JwtConstant.USERNAME);
+        SysUser user =sysUserService.selectUserByName(username) ;
         List<String> permsList;
-
         //系统管理员，拥有最高权限
-        if(userId == 1){
+        if(user.getUserId()== 1){
             List<SysMenu> menuList = sysMenuService.selectList();
             permsList = new ArrayList<>(menuList.size());
             for(SysMenu menu : menuList){
                 permsList.add(menu.getPerms());
             }
         }else{
-            permsList = sysUserService.queryAllPerms(userId);
+            permsList = sysUserService.queryAllPerms(user.getUserId());
         }
 
         //用户权限列表
@@ -64,11 +73,15 @@ public class ShiroRealm extends AuthorizingRealm {
     //认证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        //获取用户名
-      String username= (String) authenticationToken.getPrincipal();
+        String token = (String) authenticationToken.getCredentials();
+        // 解密获得用户名username，用于和数据库进行对比
+        String username = JwtUtil.getClaim(token, JwtConstant.USERNAME);
+        // 帐号为空
+        if (StringUtils.isBlank(username)) {
+            throw new AuthenticationException("Token中帐号为空(The account in Token is empty.)");
+        }
       //查询用户
        SysUser user= sysUserService.selectUserByName(username);;
-
         //判断账号是否存在
         if (user == null) {
             throw new AuthenticationException();
@@ -77,19 +90,7 @@ public class ShiroRealm extends AuthorizingRealm {
         if (user.getState()==null||user.getState().equals("PROHIBIT")){
             throw new LockedAccountException();
         }
-        //进行验证
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()),getName()
-        );
-        return authenticationInfo;
+        return new SimpleAuthenticationInfo(token,token, ByteSource.Util.bytes(user.getSalt()),"ShiroRealm");
     }
 
-
-
-    @Override
-    public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
-        HashedCredentialsMatcher shaCredentialsMatcher = new HashedCredentialsMatcher();
-        shaCredentialsMatcher.setHashAlgorithmName(ShiroUtils.hashAlgorithmName);
-        shaCredentialsMatcher.setHashIterations(ShiroUtils.hashIterations);
-        super.setCredentialsMatcher(shaCredentialsMatcher);
-    }
 }

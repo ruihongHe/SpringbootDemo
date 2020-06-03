@@ -6,6 +6,7 @@ import com.example.springboot.common.exception.CmsException;
 import com.example.springboot.common.util.HttpContextUtils;
 import com.example.springboot.common.util.IPUtils;
 import com.example.springboot.modules.entity.SysUser;
+import com.example.springboot.modules.shiro.ShiroUtils;
 import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -77,7 +78,7 @@ public class SysLogAspect {
 		//设置IP地址
 		logsmap.put("Ip", IPUtils.getIpAddr(request));
 		//用户名
-		String username = ((SysUser) SecurityUtils.getSubject().getPrincipal()).getUsername();
+		String username = ShiroUtils.getUsername();
 		logsmap.put("Username",username);
 		logsmap.put("Time",time);
 		log.info(logsmap.toString());

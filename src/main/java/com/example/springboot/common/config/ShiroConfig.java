@@ -1,21 +1,22 @@
 package com.example.springboot.common.config;
 
+import com.example.springboot.common.filter.JwtFilter;
+import com.example.springboot.modules.shiro.JWTCredentialsMatcher;
 import com.example.springboot.modules.shiro.ShiroRealm;
-import com.example.springboot.modules.shiro.ShiroSessionIdGenerator;
-import com.example.springboot.modules.shiro.ShiroSessionManager;
+import com.example.springboot.modules.shiro.ShiroUtils;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
+import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.crazycake.shiro.RedisCacheManager;
-import org.crazycake.shiro.RedisManager;
-import org.crazycake.shiro.RedisSessionDAO;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -28,142 +29,61 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    private final String CACHE_KEY = "shiro:cache:";
-    private final String SESSION_KEY = "shiro:session:";
-
-    /**
-    *   Redis配置
-    */
-    @Value("${spring.redis.host}")
-    private String host;
-    @Value("${spring.redis.port}")
-    private int port;
-    @Value("${spring.redis.timeout}")
-    private int timeout;
-  /*  @Value("${spring.redis.password}")
-    private String password;*/
-
-
-
 
     /**
      * 安全管理器
      */
 
-    @Bean
+    @Bean("securityManager")
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(shiroRealm());
-        securityManager.setSessionManager(sessionManager());
-        securityManager.setCacheManager(cacheManager());
+        // 关闭Shiro自带的session
+        DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
+        DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
+        defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
+        subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
+        securityManager.setSubjectDAO(subjectDAO);
         securityManager.setRememberMeManager(null);
         return securityManager;
     }
 
     /**
      * 身份验证器
-     * @Author Sans
-     * @CreateTime 2019/6/12 10:37
      */
-    @Bean
+    @Bean("shiroRealm")
     public ShiroRealm shiroRealm() {
+        ShiroRealm shiroRealm=new ShiroRealm();
+        shiroRealm.setCredentialsMatcher(new JWTCredentialsMatcher());
+        return  shiroRealm;
+    }
+    /**
+     * 设置加密
 
-        return  new ShiroRealm();
-    }
-    /**
-     * 配置Cache管理器
-     * 用于往Redis存储权限和角色标识
-     * @Attention 使用的是shiro-redis开源插件
-     * @Author Sans
-     * @CreateTime 2019/6/12 12:37
-     */
-    @Bean
-    public RedisCacheManager cacheManager() {
-        RedisCacheManager redisCacheManager = new RedisCacheManager();
-        redisCacheManager.setRedisManager(redisManager());
-        redisCacheManager.setKeyPrefix(CACHE_KEY);
-        // 配置缓存的话要求放在session里面的实体类必须有个id标识
-        redisCacheManager.setPrincipalIdFieldName("userId");
-        return redisCacheManager;
-    }
-    /**
-     * 配置Session管理器
-     * @Author Sans
-     * @CreateTime 2019/6/12 14:25
-     */
-    @Bean
-    public SessionManager sessionManager() {
-        ShiroSessionManager shiroSessionManager = new ShiroSessionManager();
-        shiroSessionManager.setSessionDAO(redisSessionDAO());
-        return shiroSessionManager;
-    }
+    @Bean("hashedCredentialsMatcher")
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher shaCredentialsMatcher = new HashedCredentialsMatcher();
+        shaCredentialsMatcher.setHashAlgorithmName(ShiroUtils.hashAlgorithmName);
+        shaCredentialsMatcher.setHashIterations(ShiroUtils.hashIterations);
+     return shaCredentialsMatcher;
+    }*/
 
-    /**
-     * 配置RedisSessionDAO
-     * @Attention 使用的是shiro-redis开源插件
-     * @Author Sans
-     * @CreateTime 2019/6/12 13:44
-     */
-    @Bean
-    public RedisSessionDAO redisSessionDAO() {
-        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
-        redisSessionDAO.setRedisManager(redisManager());
-        redisSessionDAO.setSessionIdGenerator(sessionIdGenerator());
-        redisSessionDAO.setKeyPrefix(SESSION_KEY);
-        redisSessionDAO.setExpire(timeout);
-        return redisSessionDAO;
-    }
-    /**
-     * 配置Redis管理器
-     * @Attention 使用的是shiro-redis开源插件
-     * @Author Sans
-     * @CreateTime 2019/6/12 11:06
-     */
-    @Bean
-    public RedisManager redisManager() {
-        RedisManager redisManager = new RedisManager();
-        redisManager.setHost(host);
-        redisManager.setPort(port);
-        redisManager.setTimeout(timeout);
-        /*redisManager.setPassword(password);*/
-        return redisManager;
-    }
-    /**
-     * SessionID生成器
-     * @Author Sans
-     * @CreateTime 2019/6/12 13:12
-     */
-    @Bean
-    public ShiroSessionIdGenerator sessionIdGenerator(){
-        return new ShiroSessionIdGenerator();
-    }
     /**
      * Shiro基础配置
      */
     @Bean("shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
-        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
-        shiroFilter.setSecurityManager(securityManager);
-        shiroFilter.setLoginUrl("/login.html");
-        shiroFilter.setUnauthorizedUrl("/");
-
-        Map<String, String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/swagger/**", "anon");
-        filterMap.put("/v2/api-docs", "anon");
-        filterMap.put("/swagger-ui.html", "anon");
-        filterMap.put("/webjars/**", "anon");
-        filterMap.put("/swagger-resources/**", "anon");
-        filterMap.put("/doc.html", "anon");
-        filterMap.put("/statics/**", "anon");
-        filterMap.put("/login.html", "anon");
-        filterMap.put("/sys/login", "anon");
-        filterMap.put("/favicon.ico", "anon");
-        filterMap.put("/captcha.jpg", "anon");
-        filterMap.put("/sysUser/add", "anon");
-        filterMap.put("/**", "authc");
-        shiroFilter.setFilterChainDefinitionMap(filterMap);
-
-        return shiroFilter;
+        ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
+        // 添加自己的过滤器取名为jwt
+        Map<String, Filter> filterMap = new HashMap<>(16);
+        filterMap.put("jwt", new JwtFilter());
+        factoryBean.setFilters(filterMap);
+        factoryBean.setSecurityManager(securityManager);
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>(16);
+        filterChainDefinitionMap.put("/sys/login", "anon");
+        filterChainDefinitionMap.put("/**","jwt");
+        factoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        return factoryBean;
     }
 
     @Bean("lifecycleBeanPostProcessor")
