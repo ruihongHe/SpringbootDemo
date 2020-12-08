@@ -6,3 +6,16 @@ spring:
 #日志配置
 logging:
   config: classpath:log4j2.xml
+
+#配置文件上传大小
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+#异步线程池配置
+  threadpool:
+    corePoolSize: 10
+    maxPoolSize: 20
+    queueCapacity: 200
+    keepAliveSeconds: 60
+    threadNamePrefix: taskExecutor-

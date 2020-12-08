@@ -1,0 +1,26 @@
+server:
+  port: 8180
+  tomcat:
+    min-spare-threads: 20
+    max-threads: 100
+  connection-timeout: 5000
+
+
+spring:
+  #mysql数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.36.130:3306/family?characterEncoding=utf-8
+    username: root
+    password: root
+
+  #redis配置
+  redis:
+      host: 192.168.36.130
+      port: 6379
+      jedis:
+        pool:
+          max-idle: 8
+          min-idle: 0
+          max-active: 8
+          max-wait: -1

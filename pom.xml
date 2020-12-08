@@ -20,6 +20,7 @@
 		<java.version>1.8</java.version>
 		<kaptcha.version>0.0.9</kaptcha.version>
 		<jedis.version>2.9.0</jedis.version>
+		<elasticsearch.version>7.3.0</elasticsearch.version>
 	</properties>
 
 	<dependencies>
@@ -205,6 +206,11 @@
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 			<version>${jedis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+			<!--<version>${elasticsearch.version}</version>-->
 		</dependency>
 
 	</dependencies>

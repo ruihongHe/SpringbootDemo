@@ -65,6 +65,13 @@ spring:
         min-idle: 0
         max-active: 8
         max-wait: -1
+#Elasticsearch
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: 127.0.0.1:9300
+
+
 
 mybatis-plus:
   # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
