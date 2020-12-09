@@ -3,6 +3,7 @@
 /Users/rui/IdeaProjects/Springboot/src/main/java/com/example/springboot/common/validator/group/Group.java
 /Users/rui/IdeaProjects/Springboot/src/main/java/com/example/springboot/common/filter/JwtFilter.java
 /Users/rui/IdeaProjects/Springboot/src/main/java/com/example/springboot/common/exception/GlobalExceptionHandler.java
+/Users/rui/IdeaProjects/Springboot/src/main/java/com/example/springboot/common/config/ThreadPoolConfig.java
 /Users/rui/IdeaProjects/Springboot/src/main/java/com/example/springboot/modules/entity/SysRole.java
 /Users/rui/IdeaProjects/Springboot/src/main/java/com/example/springboot/common/config/WebSocketConfig.java
 /Users/rui/IdeaProjects/Springboot/src/main/java/com/example/springboot/modules/entity/SysUser.java

@@ -22,101 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92b25de9-7034-43d2-9bc9-bf84598ed093" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/springboot/common/config/ThreadPoolConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application-prod.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/SpringbootApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/annotation/NoRepeatSubmit.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/annotation/SysLog.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/aspect/NoRepeatSubmitAop.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/aspect/SysLogAspect.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/banner/MyBanner.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/config/JedisConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/config/KaptchaConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/config/MybatisPlusConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/config/RedissonManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/config/ShiroConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/config/SwaggerConfiguration.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/config/WebSocketConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/constant/JwtConstant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/constant/RedisConstant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/exception/CmsException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/exception/GlobalExceptionHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/filter/JwtFilter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/jwt/JwtToken.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/Base64ConvertUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/ExceptionUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/HttpContextUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/IPUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/JedisUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/JwtUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/PageUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/RedissonLockUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/Response.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/ResultCodeEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/SerializableUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/util/StringUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/validator/Assert.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/validator/ValidatorUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/validator/group/AddGroup.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/validator/group/Group.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/common/validator/group/UpdateGroup.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/controller/SysLoginController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/controller/SysMenuController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/controller/SysRoleController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/controller/SysUserController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/dao/SysMenuDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/dao/SysRoleDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/dao/SysRoleMenuDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/dao/SysUserDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/dao/SysUserRoleDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/entity/SysMenu.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/entity/SysRole.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/entity/SysRoleMenu.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/entity/SysUser.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/entity/SysUserRole.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/scoket/WebSocket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/SysMenuService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/SysRoleMenuService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/SysRoleService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/SysUserRoleService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/SysUserService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/impl/SysMenuServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/impl/SysRoleMenuServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/impl/SysRoleServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/impl/SysUserRoleServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/service/impl/SysUserServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/shiro/JWTCredentialsMatcher.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/shiro/ShiroRealm.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/shiro/ShiroUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/example/springboot/modules/shiro/SpringUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/SysMenuDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/SysRoleDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/SysRoleMenuDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/SysUserDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/SysUserRoleDao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/springboot-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/springboot-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/com/example/springboot/SpringbootApplicationTests.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/com/example/springboot/test.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/com/example/springboot/test1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/log4j2-spring.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="92b25de9-7034-43d2-9bc9-bf84598ed093" name="Default Changelist" comment="增加异步线程池配置">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/springboot-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/springboot-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/springboot-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/springboot-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,13 +75,15 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -209,8 +124,17 @@
       <workItem from="1607342164151" duration="914000" />
       <workItem from="1607393712774" duration="688000" />
       <workItem from="1607394419530" duration="10000" />
-      <workItem from="1607414558244" duration="1976000" />
+      <workItem from="1607414558244" duration="6475000" />
+      <workItem from="1607479285252" duration="2698000" />
     </task>
+    <task id="LOCAL-00001" summary="增加异步线程池配置">
+      <created>1607417014546</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607417014546</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +151,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="增加异步线程池配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加异步线程池配置" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2240" y="199" key="#Plugins" timestamp="1602226471057">
@@ -249,30 +177,42 @@
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state x="1780" y="123" width="1720" height="857" key="DiffContextDialog/0.23.1680.970/1680.23.1920.1057@1680.23.1920.1057" timestamp="1601454189483" />
-    <state width="1638" height="256" key="GridCell.Tab.0.bottom" timestamp="1607343083956">
+    <state width="1638" height="256" key="GridCell.Tab.0.bottom" timestamp="1607479943937">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state width="1878" height="290" key="GridCell.Tab.0.bottom/0.23.1680.970/1680.23.1920.1057@1680.23.1920.1057" timestamp="1602308675475" />
-    <state width="1638" height="256" key="GridCell.Tab.0.bottom/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607343083956" />
-    <state width="1638" height="256" key="GridCell.Tab.0.center" timestamp="1607343083955">
+    <state width="1638" height="256" key="GridCell.Tab.0.bottom/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607479943937" />
+    <state width="1638" height="256" key="GridCell.Tab.0.center" timestamp="1607479943937">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state width="1878" height="290" key="GridCell.Tab.0.center/0.23.1680.970/1680.23.1920.1057@1680.23.1920.1057" timestamp="1602308675475" />
-    <state width="1638" height="256" key="GridCell.Tab.0.center/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607343083955" />
-    <state width="1638" height="256" key="GridCell.Tab.0.left" timestamp="1607343083955">
+    <state width="1638" height="256" key="GridCell.Tab.0.center/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607479943937" />
+    <state width="1638" height="256" key="GridCell.Tab.0.left" timestamp="1607479943936">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state width="1878" height="290" key="GridCell.Tab.0.left/0.23.1680.970/1680.23.1920.1057@1680.23.1920.1057" timestamp="1602308675475" />
-    <state width="1638" height="256" key="GridCell.Tab.0.left/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607343083955" />
-    <state width="1638" height="256" key="GridCell.Tab.0.right" timestamp="1607343083956">
+    <state width="1638" height="256" key="GridCell.Tab.0.left/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607479943936" />
+    <state width="1638" height="256" key="GridCell.Tab.0.right" timestamp="1607479943937">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state width="1878" height="290" key="GridCell.Tab.0.right/0.23.1680.970/1680.23.1920.1057@1680.23.1920.1057" timestamp="1602308675475" />
-    <state width="1638" height="256" key="GridCell.Tab.0.right/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607343083956" />
-    <state x="410" y="177" key="SettingsEditor" timestamp="1607393755013">
+    <state width="1638" height="256" key="GridCell.Tab.0.right/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607479943937" />
+    <state x="428" y="245" key="IDE.errors.dialog" timestamp="1607480034704">
+      <screen x="0" y="25" width="1680" height="962" />
+    </state>
+    <state x="428" y="245" key="IDE.errors.dialog/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607480034704" />
+    <state x="410" y="177" key="SettingsEditor" timestamp="1607417404042">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state x="2149" y="190" key="SettingsEditor/0.23.1680.970/1680.23.1920.1057@1680.23.1920.1057" timestamp="1602226538442" />
-    <state x="410" y="177" key="SettingsEditor/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607393755013" />
+    <state x="410" y="177" key="SettingsEditor/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607417404042" />
+    <state x="440" y="243" key="Vcs.Push.Dialog.v2" timestamp="1607417021980">
+      <screen x="0" y="25" width="1680" height="962" />
+    </state>
+    <state x="440" y="243" key="Vcs.Push.Dialog.v2/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607417021980" />
+    <state x="641" y="424" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607479441100">
+      <screen x="0" y="25" width="1680" height="962" />
+    </state>
+    <state x="641" y="424" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1680.962/1680.25.1920.1055@0.25.1680.962" timestamp="1607479441100" />
   </component>
 </project>

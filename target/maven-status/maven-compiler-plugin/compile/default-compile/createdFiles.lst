@@ -7,6 +7,7 @@ com/example/springboot/modules/service/impl/SysRoleMenuServiceImpl.class
 com/example/springboot/modules/controller/SysMenuController.class
 com/example/springboot/modules/dao/SysUserDao.class
 com/example/springboot/modules/service/impl/SysRoleServiceImpl.class
+com/example/springboot/common/config/ThreadPoolConfig.class
 com/example/springboot/common/aspect/NoRepeatSubmitAop.class
 com/example/springboot/common/util/Response.class
 com/example/springboot/common/exception/CmsException.class
