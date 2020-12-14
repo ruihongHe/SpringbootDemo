@@ -2,6 +2,21 @@ spring:
   #指定运行环境
   profiles:
     active: dev
+  #邮箱设置
+  mail:
+    host: smtp.mxhichina.com
+    username: heruihong@hrfax.cn
+    password: 032502ds@
+    port: 25
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 
 #日志配置
 logging:
