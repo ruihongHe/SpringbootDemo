@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * The type Mail service.
+ */
 @Service
 public class MailServiceImpl implements MailService {
     @Autowired
