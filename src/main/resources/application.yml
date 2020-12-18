@@ -5,8 +5,8 @@ spring:
   #邮箱设置
   mail:
     host: smtp.mxhichina.com
-    username: heruihong@hrfax.cn
-    password: 032502ds@
+    username: xxxxx@hsss.cn
+    password: XXXXXX
     port: 25
     protocol: smtp
     default-encoding: UTF-8
