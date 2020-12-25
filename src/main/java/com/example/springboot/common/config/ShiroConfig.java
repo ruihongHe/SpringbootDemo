@@ -57,16 +57,6 @@ public class ShiroConfig {
         shiroRealm.setCredentialsMatcher(new JWTCredentialsMatcher());
         return  shiroRealm;
     }
-    /**
-     * 设置加密
-
-    @Bean("hashedCredentialsMatcher")
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher shaCredentialsMatcher = new HashedCredentialsMatcher();
-        shaCredentialsMatcher.setHashAlgorithmName(ShiroUtils.hashAlgorithmName);
-        shaCredentialsMatcher.setHashIterations(ShiroUtils.hashIterations);
-     return shaCredentialsMatcher;
-    }*/
 
     /**
      * Shiro基础配置

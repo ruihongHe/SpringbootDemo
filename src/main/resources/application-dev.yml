@@ -71,28 +71,25 @@ spring:
       cluster-name: docker-cluster
       cluster-nodes: 127.0.0.1:9300
 
-  quartz:
-    #相关属性配置
-    properties:
-      org:
-        quartz:
-          scheduler:
-            instanceName: clusteredScheduler
-            instanceId: AUTO
-          jobStore:
-            class: org.quartz.impl.jdbcjobstore.JobStoreTX
-            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-            tablePrefix: QRTZ_
-            isClustered: true
-            clusterCheckinInterval: 10000
-            useProperties: false
-          threadPool:
-            class: org.quartz.simpl.SimpleThreadPool
-            threadCount: 10
-            threadPriority: 5
-            threadsInheritContextClassLoaderOfInitializingThread: true
-    #数据库方式
-    job-store-type: jdbc
+xxl:
+   job:
+    admin.addresses: http://127.0.0.1:8080/xxl-job-admin
+
+  ### xxl-job, access token
+    accessToken:
+
+  ### xxl-job executor appname
+    executor:
+      appname: xxl-job-executor-sample
+  ### xxl-job executor registry-address: default use address to registry , otherwise use ip:port if address is null
+      address:
+  ### xxl-job executor server-info
+      ip:
+      port: 9999
+  ### xxl-job executor log-path
+      logpath: /data/applogs/xxl-job/jobhandler
+  ### xxl-job executor log-retention-days
+      logretentiondays: 30
 
 
 mybatis-plus:
