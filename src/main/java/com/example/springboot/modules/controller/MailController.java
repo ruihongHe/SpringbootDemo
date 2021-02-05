@@ -6,6 +6,7 @@ import com.example.springboot.modules.service.MailService;
 import io.swagger.annotations.Api;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,7 @@ public class MailController {
      * @return the response
      * @throws MessagingException the messaging exception
      */
-    @RequestMapping("/toSend")
+    @PostMapping("/toSend")
     public Response toSendEMail(@Param("mailAddress") String mailAddress) throws MessagingException {
         mailService.toSend(mailAddress);
         return Response.setResult(ResultCodeEnum.SUCCESS);
