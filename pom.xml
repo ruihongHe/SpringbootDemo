@@ -21,7 +21,7 @@
 		<kaptcha.version>0.0.9</kaptcha.version>
 		<jedis.version>2.9.0</jedis.version>
 		<elasticsearch.version>7.3.0</elasticsearch.version>
-		<xxl-job.version>2.2.0</xxl-job.version>
+		<xxl-job.version>2.3.0</xxl-job.version>
 	</properties>
 
 	<dependencies>
