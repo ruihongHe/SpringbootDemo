@@ -19,7 +19,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<kaptcha.version>0.0.9</kaptcha.version>
-		<jedis.version>2.9.0</jedis.version>
+		<jedis.version>4.0.0</jedis.version>
 		<elasticsearch.version>7.3.0</elasticsearch.version>
 		<xxl-job.version>2.3.0</xxl-job.version>
 	</properties>
@@ -67,7 +67,7 @@
 			<groupId>com.github.xiaoymin</groupId>
 			<artifactId>knife4j-spring-boot-starter</artifactId>
 			<!--在引用时请在maven中央仓库搜索最新版本号-->
-			<version>2.0.2</version>
+			<version>3.0.3</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>javassist</artifactId>
@@ -89,31 +89,31 @@
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>3.1.0</version>
+			<version>3.4.3.4</version>
 		</dependency>
 		<!-- 引入阿里数据库连接池 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.1.6</version>
+			<version>1.2.8</version>
 		</dependency>
 		<!-- Shiro 核心依赖 -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
-			<version>1.7.0</version>
+			<version>1.7.1</version>
 		</dependency>
 		<!-- jwt 核心依赖 -->
 		<dependency>
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
-			<version>3.4.1</version>
+			<version>3.18.2</version>
 		</dependency>
 		<!-- Shiro-redis插件 -->
 		<dependency>
 			<groupId>org.crazycake</groupId>
 			<artifactId>shiro-redis</artifactId>
-			<version>3.1.0</version>
+			<version>3.3.1</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>shiro-core</artifactId>
@@ -140,6 +140,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+			<version>2.6.1</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
@@ -162,7 +163,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.47</version>
+			<version>1.2.79</version>
 		</dependency>
 		<!--定时任务-->
 		<!-- xxl-job-core -->
@@ -200,7 +201,7 @@
 		<dependency>
 			<groupId>org.redisson</groupId>
 			<artifactId>redisson</artifactId>
-			<version>3.12.2</version>
+			<version>3.16.6</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>objenesis</artifactId>
@@ -228,7 +229,7 @@
 		<dependency>
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>
-			<version>5.5.7</version>
+			<version>5.7.18</version>
 		</dependency>
 
 	</dependencies>
