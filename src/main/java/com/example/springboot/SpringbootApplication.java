@@ -1,4 +1,4 @@
-package ample.springboot;
+package com.example.springboot;
 
 import com.example.springboot.common.banner.MyBanner;
 import org.mybatis.spring.annotation.MapperScan;
