@@ -21,7 +21,7 @@
 		<kaptcha.version>0.0.9</kaptcha.version>
 		<jedis.version>4.0.0</jedis.version>
 		<elasticsearch.version>7.3.0</elasticsearch.version>
-		<xxl-job.version>2.3.0</xxl-job.version>
+		<xxl-job.version>2.3.1</xxl-job.version>
 		<joda.time.version>2.10.13</joda.time.version>
 		<webmagic.core.version>0.7.5</webmagic.core.version>
 	</properties>
