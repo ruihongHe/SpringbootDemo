@@ -1,3 +1,4 @@
+/*
 package com.example.springboot.common.config;
 
 
@@ -9,7 +10,9 @@ import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-/*import org.springframework.data.mongodb.core.aggregation.ConditionalOperators;*/
+*/
+/*import org.springframework.data.mongodb.core.aggregation.ConditionalOperators;*//*
+
 
 @Configuration
 @Log4j2
@@ -18,7 +21,9 @@ public class RedissonManager {
     @Value("${redisson.address}")
     private String addressUrl;
 
-    /*单机模式自动装配*/
+    */
+/*单机模式自动装配*//*
+
     @Bean
     public RedissonClient getRedisson() throws Exception{
         RedissonClient redisson = null;
@@ -30,11 +35,14 @@ public class RedissonManager {
         return redisson;
     }
 
-    /**
+    */
+/**
      * 哨兵模式自动装配
      * @return
-     */
-    /*@Bean
+     *//*
+
+    */
+/*@Bean
     public RedissonClient redissonSentinel() {
         Config config = new Config();
         config.useSentinelServers().addSentinelAddress(redssionProperties.getSentinelAddresses())
@@ -44,6 +52,8 @@ public class RedissonManager {
                 .setSlaveConnectionPoolSize(redssionProperties.getSlaveConnectionPoolSize());
 
         return Redisson.create(config);
-    }*/
+    }*//*
+
 
 }
+*/
