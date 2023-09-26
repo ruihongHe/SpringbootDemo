@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.CompletableFuture;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,6 +37,7 @@ public class SpringbootApplicationTests {
 		String str=new String("1233");
 		Class<?> klass = str.getClass();
 
+		CompletableFuture cf=CompletableFuture.completedFuture("");
 	}
 
 
