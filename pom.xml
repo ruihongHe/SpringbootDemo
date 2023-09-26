@@ -23,7 +23,7 @@
 		<elasticsearch.version>7.3.0</elasticsearch.version>
 		<xxl-job.version>2.3.1</xxl-job.version>
 		<joda.time.version>2.12.2</joda.time.version>
-		<webmagic.core.version>0.8.0</webmagic.core.version>
+		<webmagic.core.version>0.9.1</webmagic.core.version>
 	</properties>
 
 	<dependencies>
