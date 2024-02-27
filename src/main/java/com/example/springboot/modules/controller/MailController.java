@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.mail.MessagingException;
 
 /**
  * The type Mail controller.
@@ -27,10 +26,9 @@ public class MailController {
      *
      * @param mailAddress the mail address
      * @return the response
-     * @throws MessagingException the messaging exception
      */
     @PostMapping("/toSend")
-    public Response toSendEMail(@Param("mailAddress") String mailAddress) throws MessagingException {
+    public Response toSendEMail(@Param("mailAddress") String mailAddress)  {
         mailService.toSend(mailAddress);
         return Response.setResult(ResultCodeEnum.SUCCESS);
     }

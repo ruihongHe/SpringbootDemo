@@ -11,9 +11,9 @@ package com.example.springboot.common.validator;
 
 import com.example.springboot.common.exception.CmsException;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import java.util.Set;
 
 /**

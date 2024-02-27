@@ -269,7 +269,7 @@
 		</dependency>
 		<!--openoffice-->
 		<dependency>
-			<groupId>com.artofsolving</groupId>
+			<groupId>com.artofsolving</groupId>j
 			<artifactId>jodconverter</artifactId>
 			<version>2.2.1</version>
 		</dependency>

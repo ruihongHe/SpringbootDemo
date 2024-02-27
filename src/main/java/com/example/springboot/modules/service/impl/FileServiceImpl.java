@@ -4,7 +4,7 @@ import com.example.springboot.common.util.FileConvertUtil;
 import com.example.springboot.modules.service.FileService;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.OutputStream;
 

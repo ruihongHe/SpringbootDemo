@@ -1,6 +1,6 @@
 package com.example.springboot.modules.service;
 
-import javax.mail.MessagingException;
+import jakarta.mail.MessagingException;
 
 /**
  * The interface Mail service.

@@ -1,6 +1,6 @@
 package com.example.springboot.modules.service;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 文件服务
