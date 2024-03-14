@@ -21,7 +21,7 @@ public class SpringbootApplication {
 	}
 
 	public void run(String... strings) throws Exception {
-		// 爬取知乎数据
+		// 爬取知乎数据，踩缝纫机
 		zhihuTask.crawl();
 	}
 
