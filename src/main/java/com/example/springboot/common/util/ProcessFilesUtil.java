@@ -61,7 +61,7 @@ public class ProcessFilesUtil {
     }
 
     private Counter toLogLine(String s) {
-        Counter counter=new Counter();
+        Counter counter=new Counter(s,0);
 
         return counter;
     }
